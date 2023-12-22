@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your FiveM Server</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000; /* Set a background color for the body */
+            color: gray; /* Set text color to gray */
+        }
+
+        #video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        #video-background {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(1.2); /* Adjusted brightness value */
+        }
+
+        #entry-image {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        #content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 3;
+            display: none; /* Hide content initially */
+            opacity: 0; /* Initially transparent */
+            transition: opacity 2s ease; /* Fade-in transition */
+        }
+
+        #server-name {
+            font-size: 3vw;
+            font-weight: bold;
+            color: orange;
+            /* Modern styles */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            letter-spacing: 2px;
+        }
+
+        .button {
+            display: inline-block;
+            margin: 1vw;
+            padding: 0.7vw 1.5vw; /* Adjusted padding to make the button slightly smaller */
+            font-size: 1vw; /* Adjusted font size to make the button slightly smaller */
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 1.5vw;
+            background-color: orange;
+            color: white;
+            /* Modern styles */
+            box-shadow: 0px 0px 10px rgba(255, 165, 0, 0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .button:hover {
+            transform: scale(1.05); /* Add a subtle scale effect on hover */
+        }
+
+        #credit-text {
+            position: fixed;
+            bottom: 3%; /* Adjusted the position to appear higher */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.6vw; /* Adjusted font size for better visibility */
+            opacity: 0; /* Initially transparent */
+            transition: opacity 2s ease; /* Fade-in transition */
+            cursor: pointer;
+            text-decoration: underline;
+            z-index: 4; /* Ensures the text is above the video */
+            /* Modern styles */
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body onclick="startContent()">
+    <div id="video-container">
+        <video id="video-background" muted>
+            <!-- Add your video source here -->
+            <source src="https://media.discordapp.net/attachments/1187798996870234183/1187858899030786078/czrp.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div id="entry-image">
+        <!-- Add your entry image source here -->
+        <img src="https://media.discordapp.net/attachments/1187798996870234183/1187867911918977024/czrp.png?ex=65987333&is=6585fe33&hm=b03ae2446d98b7c4bd0e7c7db46e38ab8dda8aa542172ca7eb690f208958e1be&=&format=webp&quality=lossless&width=991&height=184" alt="Entry Image">
+    </div>
+
+    <div id="content">
+        <div id="server-name">CZRP</div>
+        <a href="https://discord.gg/W7t7tMEQYf" class="button" id="discord-button" onclick="startAudio()">Discord Invite</a>
+        <a href="fivem://connect/49.13.70.165:40120" class="button" id="connect-button" onclick="startAudio()">Connect</a>
+    </div>
+
+    <div id="credit-text" onclick="redirect1cey()">Made By x1cey :D</div>
+
+    <audio id="background-audio" loop>
+        <!-- Add your audio source here -->
+        <source src="https://cdn.discordapp.com/attachments/1187798996870234183/1187859652042555555/czrp.mp3" type="audio/mp3">
+        Your browser does not support the audio tag.
+    </audio>
+
+    <script>
+        // Customize the credit text content
+        var creditTextContent = "Made By x1cey :D";
+
+        function startContent() {
+            var entryImage = document.getElementById('entry-image');
+            var content = document.getElementById('content');
+            var video = document.getElementById('video-background');
+            var audio = document.getElementById('background-audio');
+            var creditText = document.getElementById('credit-text');
+
+            // Hide entry image
+            entryImage.style.display = 'none';
+
+            // Show content
+            content.style.display = 'block';
+
+            // Fade in content
+            setTimeout(function () {
+                content.style.opacity = '1';
+            }, 50);
+
+            // Start video only if it's not already playing
+            if (video.paused) {
+                video.play();
+            }
+
+            // Start audio only if it's not already playing
+            if (audio.paused) {
+                audio.play();
+            }
+
+            // Show credit text with customized content
+            creditText.innerHTML = creditTextContent;
+            creditText.style.opacity = '0.5';
+        }
+
+        function startAudio() {
+            var audio = document.getElementById('background-audio');
+            audio.play();
+            // Add any other actions you want to perform on click
+        }
+
+        function redirect1cey() {
+            // Add the URL you want to redirect to
+            window.location.href = 'https://fakecrime.bio/shine';
+        }
+    </script>
+</body>
+</html>
